@@ -1,5 +1,5 @@
 {
-  "name": "hitrov/oci-api-php-request-sign",
+  "name": "dacolera/oci-api-php-request-sign",
   "description": "This package generates proper HTTP headers to sign Oracle Cloud Infrastructure API requests",
   "keywords": [
     "oci",
@@ -7,7 +7,7 @@
     "request",
     "signature"
   ],
-  "homepage": "https://github.com/hitrov/oci-api-php-request-sign",
+  "homepage": "https://github.com/dacolera/oci-api-php-request-sign",
   "authors": [
     {
       "name": "Alexander Hitrov",
