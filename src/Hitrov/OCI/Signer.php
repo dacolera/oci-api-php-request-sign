@@ -24,26 +24,25 @@ class Signer
 
     const CONTENT_TYPE_APPLICATION_JSON = 'application/json';
 
-    private string $ociTenancyId;
-    private string $ociUserId;
-    private string $ociKeyFingerPrint;
-    private string $ociPrivateKeyLocation;
+    private  $ociTenancyId;
+    private  $ociUserId;
+    private  $ociKeyFingerPrint;
+    private  $ociPrivateKeyLocation;
 
     /**
      * @var array<string, string>
      */
-    private array $headersToSign;
+    private  $headersToSign;
 
-    private KeyProviderInterface $keyProvider;
+    private  $keyProvider;
 
     /**
-     * Signer constructor.
-     * @param string|null $ociTenancyId
-     * @param string|null $ociUserId
-     * @param string|null $keyFingerPrint
-     * @param string|null $privateKeyLocation
+     * @param $ociTenancyId
+     * @param $ociUserId
+     * @param $keyFingerPrint
+     * @param $privateKeyLocation
      */
-    public function __construct(?string $ociTenancyId = null, ?string $ociUserId = null, ?string $keyFingerPrint = null, ?string $privateKeyLocation = null)
+    public function __construct($ociTenancyId = null, $ociUserId = null, $keyFingerPrint = null, $privateKeyLocation = null)
     {
         $this->ociTenancyId = $ociTenancyId ?? getenv(self::OCI_TENANCY_ID) ?: '';
         $this->ociUserId = $ociUserId ?? getenv(self::OCI_USER_ID) ?: '';
