@@ -5,6 +5,7 @@ namespace Dacolera\Test;
 
 use Dacolera\OCI\Exception\PrivateKeyFileNotFoundException;
 use Dacolera\OCI\Exception\SignerValidateException;
+use Dacolera\OCI\Exception\SigningValidationFailedException;
 use Dacolera\OCI\Signer;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
@@ -57,6 +58,10 @@ EOT;
     const GENERIC_HEADERS = 'date (request-target) host';
     const BODY_HEADERS = 'date (request-target) host content-length content-type x-content-sha256';
 
+    /**
+     * @return void
+     * @throws ReflectionException
+     */
     public function testShouldHashBody(): void
     {
         $signer = new Signer(
@@ -72,6 +77,10 @@ EOT;
         $this->assertTrue($actual);
     }
 
+    /**
+     * @return void
+     * @throws ReflectionException
+     */
     public function testGetPrivateKey(): void
     {
         $filename = implode(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', 'resources', 'privatekey.pem']);
@@ -85,6 +94,9 @@ EOT;
         $this->assertEquals(MockKeyProvider::OCI_PRIVATE_KEY, $actual);
     }
 
+    /**
+     * @return void
+     */
     public function testGetBodyHashBase64(): void
     {
         $signer = new Signer(
@@ -95,6 +107,10 @@ EOT;
         $this->assertEquals('V9Z20UJTvkvpJ50flBzKE32+6m2zJjweHpDMX/U4Uy0=', $actual);
     }
 
+    /**
+     * @return void
+     * @throws ReflectionException
+     */
     public function testGetHeadersToSign(): void
     {
         $signer = new Signer(
@@ -129,6 +145,9 @@ EOT;
         $this->assertEquals(explode(' ', self::BODY_HEADERS), array_keys($actual));
     }
 
+    /**
+     * @return void
+     */
     public function testGetSigningString(): void
     {
         $signer = new Signer(
@@ -148,6 +167,10 @@ EOT;
         $this->assertEquals(self::EXPECTED_SIGNING_STRING2, $actual);
     }
 
+    /**
+     * @return void
+     * @throws SigningValidationFailedException
+     */
     public function testCalculateSignature(): void
     {
         $filename = implode(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', 'resources', 'privatekey.pem']);
@@ -167,6 +190,9 @@ EOT;
         $this->assertEquals(self::EXPECTED_SIGNATURE2, $actual);
     }
 
+    /**
+     * @return void
+     */
     public function testGetKeyId(): void
     {
         $signer = new Signer(
@@ -178,6 +204,9 @@ EOT;
         $this->assertEquals($expected, $actual);
     }
 
+    /**
+     * @return void
+     */
     public function testGetAuthorizationHeader(): void
     {
         $signer = new Signer(
@@ -201,6 +230,12 @@ EOT;
         $this->assertEquals($expected, $actual);
     }
 
+    /**
+     * @return void
+     * @throws PrivateKeyFileNotFoundException
+     * @throws SignerValidateException
+     * @throws SigningValidationFailedException
+     */
     public function testGetHeaders(): void
     {
         $filename = implode(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', 'resources', 'privatekey.pem']);
@@ -241,6 +276,12 @@ EOT;
         $this->assertEquals($expected, $actual);
     }
 
+    /**
+     * @return void
+     * @throws PrivateKeyFileNotFoundException
+     * @throws SignerValidateException
+     * @throws SigningValidationFailedException
+     */
     public function testInvalidUrl(): void
     {
         $signer = new Signer(
@@ -253,6 +294,12 @@ EOT;
         );
     }
 
+    /**
+     * @return void
+     * @throws PrivateKeyFileNotFoundException
+     * @throws SignerValidateException
+     * @throws SigningValidationFailedException
+     */
     public function testPrivateKeyLocationUrl(): void
     {
         $signer = new Signer(
@@ -268,6 +315,12 @@ EOT;
         $this->assertNotEmpty($headers);
     }
 
+    /**
+     * @return void
+     * @throws PrivateKeyFileNotFoundException
+     * @throws SignerValidateException
+     * @throws SigningValidationFailedException
+     */
     public function testNoOciDataProvided(): void
     {
         $filename = implode(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', 'resources', 'privatekey.pem']);
@@ -281,6 +334,12 @@ EOT;
         );
     }
 
+    /**
+     * @return void
+     * @throws PrivateKeyFileNotFoundException
+     * @throws SignerValidateException
+     * @throws SigningValidationFailedException
+     */
     public function testNoPrivateKey(): void
     {
         $signer = new Signer(
@@ -293,6 +352,12 @@ EOT;
         );
     }
 
+    /**
+     * @return void
+     * @throws PrivateKeyFileNotFoundException
+     * @throws SignerValidateException
+     * @throws SigningValidationFailedException
+     */
     public function testPrivateKeyNotFound(): void
     {
         $signer = new Signer(
@@ -304,6 +369,10 @@ EOT;
         );
     }
 
+    /**
+     * @return void
+     * @throws SigningValidationFailedException
+     */
     public function testSetKeyProvider(): void
     {
         $signer = new Signer(
@@ -321,6 +390,9 @@ EOT;
         $this->assertEquals(self::EXPECTED_SIGNATURE2, $actual);
     }
 
+    /**
+     * @return void
+     */
     public function testGetSigningHeadersNames(): void
     {
         $signer = new Signer();
