@@ -1,6 +1,6 @@
 <?php
 
-namespace Hitrov\OCI\Exception;
+namespace Dacolera\OCI\Exception;
 
 use Exception;
 

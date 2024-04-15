@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Hitrov\Test;
+namespace Dacolera\Test;
 
-use Hitrov\OCI\KeyProvider\KeyProviderInterface;
+use Dacolera\OCI\KeyProvider\KeyProviderInterface;
 
 class MockKeyProvider implements KeyProviderInterface
 {

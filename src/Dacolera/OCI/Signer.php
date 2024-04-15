@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Hitrov\OCI;
+namespace Dacolera\OCI;
 
-use Hitrov\OCI\Exception\PrivateKeyFileNotFoundException;
-use Hitrov\OCI\Exception\SignerValidateException;
-use Hitrov\OCI\Exception\SigningValidationFailedException;
-use Hitrov\OCI\KeyProvider\KeyProviderInterface;
+use Dacolera\OCI\Exception\PrivateKeyFileNotFoundException;
+use Dacolera\OCI\Exception\SignerValidateException;
+use Dacolera\OCI\Exception\SigningValidationFailedException;
+use Dacolera\OCI\KeyProvider\KeyProviderInterface;
 
 class Signer
 {

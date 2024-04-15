@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Hitrov\OCI\KeyProvider;
+namespace Dacolera\OCI\KeyProvider;
 
 interface KeyProviderInterface
 {

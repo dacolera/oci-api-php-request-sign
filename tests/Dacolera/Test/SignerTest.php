@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Hitrov\Test;
+namespace Dacolera\Test;
 
-use Hitrov\OCI\Exception\PrivateKeyFileNotFoundException;
-use Hitrov\OCI\Exception\SignerValidateException;
-use Hitrov\OCI\Signer;
+use Dacolera\OCI\Exception\PrivateKeyFileNotFoundException;
+use Dacolera\OCI\Exception\SignerValidateException;
+use Dacolera\OCI\Signer;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionException;
@@ -259,7 +259,7 @@ EOT;
             MockKeyProvider::OCI_TENANCY_ID,
             MockKeyProvider::OCI_USER_ID,
             MockKeyProvider::OCI_KEY_FINGERPRINT,
-            getenv('OCI_PRIVATE_KEY_URL'),
+            getenv('OCI_PRIVATE_KEY_URL')
         );
 
         $headers = $signer->getHeaders(
